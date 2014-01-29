@@ -49,8 +49,9 @@ require_once './lib/Medix/Filter/Minify/Js.php';
  * =======================================================================
  */
 
-// set global cache settings (write directory, base URL, cache expire in seconds)
-\Medix\Manager::globalCache('./skin/medix', 'skin/medix', 60);
+// set global cache settings
+// (write directory, base URL, cache expire in seconds, use browser cache control)
+\Medix\Manager::globalCache('./skin/medix', 'skin/medix', 60, false);
 
 // turn global minify filter on/off (on by default)
 // \Medix\Manager::globalMinify(false);
