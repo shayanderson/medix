@@ -3,7 +3,7 @@
  * Medix - Media Asset Manager for PHP 5.4+
  * 
  * @package Medix
- * @version 1.0.b - Jan 28, 2014
+ * @version 1.0.b - Jan 29, 2014
  * @copyright 2014 Shay Anderson <http://www.shayanderson.com>
  * @license MIT License <http://www.opensource.org/licenses/mit-license.php>
  * @link <http://www.shayanderson.com/projects/medix.htm>
@@ -80,7 +80,7 @@ abstract class Asset
 	 * Cache asset file
 	 *
 	 * @param string $file_ext
-	 * @return string (URL, ex: '/skin/js/0sf97a0sdf69a69ff9.js')
+	 * @return string (URL, ex: '/skin/js/c1d2f3aa83zc46b9d6898c851571b889.js')
 	 */
 	public function fileCache($file_ext)
 	{
@@ -93,7 +93,9 @@ abstract class Asset
 			self::fileWrite($file, $this->get());
 		}
 
-		return $cache['url'] . $this->getId() . $file_ext;
+		return $cache['url'] . $this->getId() . $file_ext
+			// browser cache control
+			. ( $cache['browser'] ? '?' . substr(md5_file($cache['path'] . $this->getId() . $file_ext), 0, 8) : '' );
 	}
 
 	/**

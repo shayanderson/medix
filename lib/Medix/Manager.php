@@ -3,7 +3,7 @@
  * Medix - Media Asset Manager for PHP 5.4+
  * 
  * @package Medix
- * @version 1.0.b - Jan 28, 2014
+ * @version 1.0.b - Jan 29, 2014
  * @copyright 2014 Shay Anderson <http://www.shayanderson.com>
  * @license MIT License <http://www.opensource.org/licenses/mit-license.php>
  * @link <http://www.shayanderson.com/projects/medix.htm>
@@ -153,12 +153,14 @@ class Manager
 	 * @return array|null (array on getter, null on setter)
 	 * @throws \Exception
 	 */
-	public static function globalCache($cache_path, $cache_base_url, $cache_expire_seconds = 60)
+	public static function globalCache($cache_path, $cache_base_url, $cache_expire_seconds = 60,
+		$use_browser_cache_control = false)
 	{
 		static $cache = [
 			'path' => null,
 			'url' => null,
-			'expire' => null
+			'expire' => null,
+			'browser' => false
 		];
 
 		if($cache_path === null && $cache_base_url === null) // getter
@@ -175,6 +177,7 @@ class Manager
 		$cache['path'] = rtrim($cache_path, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
 		$cache['url'] = rtrim($cache_base_url, '/') . '/';
 		$cache['expire'] = (int)$cache_expire_seconds;
+		$cache['browser'] = $use_browser_cache_control;
 	}
 
 	/**
