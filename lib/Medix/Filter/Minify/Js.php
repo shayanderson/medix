@@ -3,7 +3,7 @@
  * Medix - Media Asset Manager for PHP 5.4+
  * 
  * @package Medix
- * @version 1.0.b - Jan 29, 2014
+ * @version 1.0 - Apr 18, 2014
  * @copyright 2014 Shay Anderson <http://www.shayanderson.com>
  * @license MIT License <http://www.opensource.org/licenses/mit-license.php>
  * @link <http://www.shayanderson.com/projects/medix.htm>
@@ -24,7 +24,7 @@ class Js extends \Medix\Filter
 	 */
 	public function apply(&$input)
 	{
-		$input = preg_replace('/((?:\/\*(?:[^*]|(?:\*+[^*\/]))*\*+\/)|(?:\/\/.*))/', '', $input); // comments
+		$input = preg_replace('/((?:\/\*(?:[^*]|(?:\*+[^*\/]))*\*+\/)|(?:(?<!:)\/\/.*))/', '', $input); // comments
 		$input = str_replace(["\r\n", "\r", "\t", "\n", '  ', '   ', '    ', '     '], '', $input); // whitespaces
 		$input = preg_replace(['(\s+\))','(\)\s+)'], ')', $input); // whitespaces by ')'
 	}
