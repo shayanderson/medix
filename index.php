@@ -9,7 +9,7 @@
  * @link <http://www.shayanderson.com/projects/medix.htm>
  */
 
-// load Medix
+// load Medix bootstrap
 require_once './medix.bootstrap.php';
 
 use Medix\Manager as Medix;
